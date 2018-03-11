@@ -1,0 +1,34 @@
+= render "shared/flash_message"
+
+.show_content
+  %h2#show_title 詳細
+  .detail_container
+    %table#task_table.table
+      %tr.row
+        %th.col-md-2
+          名前
+        %td#show_name.col-md-10
+          #{@task.name}
+      %tr.row
+        %th.col-md-2
+          説明
+        %td#show_desc.col-md-10
+          #{@task.description}
+      %tr.row
+        %th.col-md-2
+          期限
+        %td.col-md-10
+          #{@task.expires_at.strftime("%F %R")}
+      %tr.row
+        %th.col-md-2
+          ステータス
+        %td.col-md-10
+          #{@task.status_i18n}
+      %tr.row
+        %th.col-md-2
+          優先度
+        %td.col-md-10
+          #{@task.priority_i18n}
+
+    = link_to "修正", edit_task_path(@task), id: :edit_in_show_page, class: "btn btn-primary btn-sm"
+  = link_to "トップへ戻る", root_path, class: "to-top btn btn-default btn-xs"

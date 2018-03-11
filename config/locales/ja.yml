@@ -1,0 +1,42 @@
+ja:
+  activerecord:
+    attributes:
+      task:
+        name: 名前
+        description: 説明
+        expires_at: 期限
+        status: ステータス
+        priority: 優先度
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+  enums:
+    task:
+      status:
+        todo: 未着手
+        doing: 着手
+        done: 完了
+      priority:
+        low: 低
+        middle: 中
+        high: 高
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    placeholder:
+      task:
+        name: 名前
+        description: 説明
+      admin:
+        user:
+          name: 名前
+          email: メールアドレス
+          password: パスワード
+          password_confirmation: 確認用パスワード

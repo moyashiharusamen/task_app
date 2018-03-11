@@ -1,0 +1,8 @@
+%header.header
+  %h1.app_title
+    = link_to "LifeMemo", root_path
+  - if logged_in?
+    = link_to "ユーザ一覧", admin_users_path, class: "link_to_user_index"
+    = link_to "ログアウト", logout_path, class: "logout_button", method: :delete
+  - else
+    = link_to "ログイン", login_path, class: "login_button"

@@ -1,0 +1,13 @@
+.new_content
+  %h2#login_title ログイン
+  - flash.each do |key, value|
+    = content_tag(:div, value, class: "#{key}")
+  = form_with scope: :session, url: login_path, local: true, class: "input-form" do |f|
+    .form-group
+      = f.label :email
+      = f.text_field :email, id: "login_email", class: "form-control", placeholder: "メールアドレス"
+    .form-group
+      = f.label :password
+      = f.password_field :password, id: "login_password", class: 'form-control', placeholder: "パスワード"
+
+    = f.submit "ログイン", class: "btn btn-primary"

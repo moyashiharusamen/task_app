@@ -1,0 +1,7 @@
+- if model_object.errors.any?
+  .alert
+    %p#error_desc
+      エラーが#{model_object.errors.count}件あります
+    %ul
+      - model_object.errors.full_messages.each do |message|
+        %li= message

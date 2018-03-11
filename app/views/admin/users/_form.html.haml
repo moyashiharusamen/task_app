@@ -1,0 +1,15 @@
+= form_with model: [:admin, @user], local: true, class: "input-form" do |f|
+  %div.form-group
+    = f.label :name
+    = f.text_field :name, id: :user_name, class: "form-control", placeholder: "名前"
+  %div.form-group
+    = f.label :email
+    = f.email_field :email, id: :user_email, class: "form-control", placeholder: "メールアドレス"
+  %div.form-group
+    = f.label :password
+    = f.password_field :password, id: :user_password, class: "form-control", placeholder: "パスワード"
+  %div.form-group
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, id: :user_password_confirmation, class: "form-control", placeholder: "確認用パスワード"
+
+  = f.submit data: { disable_with: "登録する" }, class: "btn btn-primary"

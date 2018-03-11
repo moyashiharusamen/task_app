@@ -1,0 +1,6 @@
+= render "shared/form_error", model_object: @user
+
+.edit_content
+  %h2#edit_title ユーザ編集
+  = render "form"
+  = link_to "ユーザ一覧へ戻る", admin_users_path, class: "to-top btn btn-default btn-xs"

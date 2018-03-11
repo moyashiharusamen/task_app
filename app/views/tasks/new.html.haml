@@ -1,0 +1,6 @@
+= render "shared/form_error", model_object: @task
+
+.new_content
+  %h2#create_title 作成
+  = render "form"
+  = link_to "トップへ戻る", root_path, class: "to-top btn btn-default btn-xs"

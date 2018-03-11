@@ -1,0 +1,6 @@
+= render "shared/form_error", model_object: @task
+
+.edit_content
+  %h2#edit_title 編集
+  = render "form"
+  = link_to "トップへ戻る", root_path, class: "to-top btn btn-default btn-xs"

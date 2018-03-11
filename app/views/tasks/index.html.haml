@@ -1,0 +1,50 @@
+= render "shared/flash_message"
+
+%h2#index_title タスク一覧
+
+= link_to "新規登録", new_task_path, class: "btn btn-primary"
+= form_with model: @task, method: :get, local: true, class: "search-container" do |f|
+  = f.text_field :search, placeholder: "名前から検索", id: :search_field
+  = f.select :status, Task.statuses_i18n.invert, include_blank: "ステータスから選択"
+  = f.submit :検索, name: nil, class: "btn btn-success"
+
+.table-responsive.table_container
+  %table#task_table.table.table-striped
+    %tr.task_item.row
+      %td.col-md-3
+        名前
+        = link_to "▲", column: :name, order: :asc
+        = link_to "▼", column: :name, order: :desc
+      %td.col-md-2
+        説明
+        = link_to "▲", column: :desc, order: :asc
+        = link_to "▼", column: :desc, order: :desc
+      %td.col-md-2
+        期限
+        = link_to "▲", column: :expires_at, order: :asc
+        = link_to "▼", column: :expires_at, order: :desc
+      %td.col-md-1
+        作成日
+        = link_to "▲", column: :created_at, order: :asc
+        = link_to "▼", column: :created_at, order: :desc
+      %td.col-md-1
+        ステータス
+      %td.col-md-1
+        優先度
+        = link_to "▲", column: :priority, order: :asc
+        = link_to "▼", column: :priority, order: :desc
+      %td.col-md-2
+
+    - @tasks.each do |task|
+      %tr.task_content.row
+        %td.task_name_line.col-md-3= task.name
+        %td.task_desc_line.col-md-2= task.description
+        %td.task_expire_line.col-md-2= task.expires_at.strftime("%F %R")
+        %td.task_created_line.col-md-1= task.created_at.strftime("%F")
+        %td.task_status_line.col-md-1= task.status_i18n
+        %td.task_priority_line.col-md-1= task.priority_i18n
+        %td.col-md-2
+          = link_to "詳細", task, class: "btn btn-default btn-xs"
+          = link_to "修正", edit_task_path(task), class: "btn btn-default btn-xs"
+          = link_to "削除", task, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-default btn-xs"
+= paginate @tasks

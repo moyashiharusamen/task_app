@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: LifeMemo_development
+
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: LifeMemo_test
+  pool: 5
+  username: tominagamasashi
+  password:
+
+# TODO 本番環境を構築する際に設定する
+production:
+  <<: *default
+  database: LifeMemo_production

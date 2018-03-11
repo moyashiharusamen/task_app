@@ -1,0 +1,39 @@
+= render "shared/flash_message"
+
+.show_content
+  %h2#show_title ユーザ詳細
+  .detail_container
+    %table#user_table.table
+      %tr.row
+        %th.col-md-2
+          名前
+        %td#user_show_name.col-md-10
+          = @user.name
+      %tr.row
+        %th.col-md-2
+          メールアドレス
+        %td#user_show_email.col-md-10
+          = @user.email
+    = link_to "修正", edit_admin_user_path(@user), class: "btn btn-primary btn-sm"
+
+.table-responsive.table_container.tasks_index.tasks_within_user_detail
+  %h3#user_tasks_title タスク一覧
+  %table#task_table.table.table-striped
+    %tr.task_item.row
+      %th.col-md-3 名前
+      %th.col-md-2 説明
+      %th.col-md-2 期限
+      %th.col-md-2 作成日
+      %th.col-md-2 ステータス
+      %th.col-md-1 優先度
+
+    - @tasks.each do |task|
+      %tr.task_content.row
+        %td.task_name_line.col-md-3= task.name
+        %td.task_desc_line.col-md-2= task.description
+        %td.task_expire_line.col-md-2= task.expires_at.strftime("%F %R")
+        %td.task_created_line.col-md-2= task.created_at.strftime("%F")
+        %td.task_status_line.col-md-2= task.status_i18n
+        %td.task_priority_line.col-md-1= task.priority_i18n
+
+  = paginate @tasks
